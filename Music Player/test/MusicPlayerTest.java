@@ -61,4 +61,69 @@ public class MusicPlayerTest {
         musicPlayer.decreaseVolume();
         Assertions.assertEquals(0, musicPlayer.getVolume());
     }
+
+    @Test
+    public void testThatMusicPlayerBluetooth_CanBeTurnedOn() {
+        MusicPlayer musicPlayer = new MusicPlayer();
+
+        musicPlayer.turnOnMp();
+        musicPlayer.turnOnBluetooth();
+
+        Assertions.assertTrue(musicPlayer.getBluetooth());
+    }
+
+    @Test
+    public void testThatMusicPlayerBluetooth_CanBeTurnedOff() {
+        MusicPlayer musicPlayer = new MusicPlayer();
+
+        musicPlayer.turnOnMp();
+        musicPlayer.turnOffBluetooth();
+
+        Assertions.assertFalse(musicPlayer.getBluetooth());
+    }
+
+    @Test
+    public void testThatMusicPlayer_CanPlayMusic() {
+        MusicPlayer musicPlayer = new MusicPlayer();
+
+        musicPlayer.turnOnMp();
+        musicPlayer.pressPlay();
+
+        Assertions.assertTrue(musicPlayer.getIsPlaying());
+        Assertions.assertFalse(musicPlayer.getIsPaused());
+    }
+
+    @Test
+    public void testThatMusicPlayer_CanPauseMusic() {
+        MusicPlayer musicPlayer = new MusicPlayer();
+
+        musicPlayer.turnOnMp();
+        musicPlayer.pressPlay();
+        musicPlayer.pressPause();
+
+        Assertions.assertFalse(musicPlayer.getIsPlaying());
+        Assertions.assertTrue(musicPlayer.getIsPaused());
+    }
+
+    @Test
+    public void testThatMusicPlayer_CanStopMusic() {
+        MusicPlayer musicPlayer = new MusicPlayer();
+
+        musicPlayer.turnOnMp();
+        musicPlayer.pressPlay();
+        musicPlayer.pressStop();
+
+        Assertions.assertFalse(musicPlayer.getIsPlaying());
+        Assertions.assertFalse(musicPlayer.getIsPaused());
+    }
+
+    @Test
+    public void testThatMusicPlayer_CannotPlayWhenOff() {
+        MusicPlayer musicPlayer = new MusicPlayer();
+
+        musicPlayer.turnOffMp();
+        musicPlayer.pressPlay();
+
+        Assertions.assertFalse(musicPlayer.getIsPlaying());
+    }
 }

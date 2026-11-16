@@ -70,9 +70,8 @@ public class Television {
         return mute;
     }
 
-    public boolean muteTelevision() {
+    public void muteTelevision() {
         mute = true;
-        return false;
     }
 
     public void unmuteTelevision() {
