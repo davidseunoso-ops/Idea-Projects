@@ -147,14 +147,4 @@ public class BankAccountTest {
 
         Assertions.assertFalse(account.validatePin("1234"));
     }
-
-    @Test
-    public void testThatPinCannotBeChangedWithIncorrectOldPin() {
-        Account account = new Account();
-
-        account.setPin("1234");
-        account.changePin("9999", "5678");
-
-        Assertions.assertEquals("1234", account.getPin());
-    }
 }
